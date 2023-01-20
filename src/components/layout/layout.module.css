@@ -1,0 +1,7 @@
+.mainLayout {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #221f23;
+  color: whitesmoke
+}

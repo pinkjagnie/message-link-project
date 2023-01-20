@@ -1,19 +1,22 @@
 import { AiOutlineCopy } from "react-icons/ai";
 
+import styles from "./linkWindow.module.css";
+
 function LinkWindow() {
   return (
-    <section>
-      <div>
+    <section className={styles.linkWindowSection}>
+      <div className={styles.linkWindowSumup}>
         <p>Here is your link.</p>
         <p>Remeber - if you copy the link, the person who receives it will only be able to open it once!</p>
       </div>
-      <div>
-        <div>
-          <a href="www.google.pl">Your link: www.google.pl/token/12345</a>
+      <div className={styles.linkBox}>
+        <div className={styles.link}>
+          <span>Your link:</span>
+          <a href="www.google.pl">www.google.pl/token/12345</a>
         </div>
         <button><AiOutlineCopy /> Copy</button>
       </div>
-      <div>Thanks for using. See you again!</div>
+      <div className={styles.linkThanks}>Thanks for using. See you again!</div>
     </section>
   );
 }
