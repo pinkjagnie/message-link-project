@@ -13,8 +13,6 @@ async function handler(req, res) {
       return;
     }
 
-    console.log(API_KEY)
-
     const newMessage = { message, hash };
 
     console.log(newMessage)
