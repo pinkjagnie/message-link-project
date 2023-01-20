@@ -10,10 +10,25 @@ function Form() {
   const messageHandler = (event) => {
     event.preventDefault();
 
-    let hash = generateHash({ length: 8 });
+    const newHash = generateHash({ length: 8 });
 
-    console.log(messageRef.current.value)
-    console.log(hash)
+    const enteredMessage = messageRef.current.value;
+
+    console.log(enteredMessage)
+    console.log(newHash)
+
+    fetch("/api/add", {
+      method: "POST",
+      body: JSON.stringify({
+        message: enteredMessage,
+        hash: newHash
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    messageRef.current.value = "";
   }
 
   return (
