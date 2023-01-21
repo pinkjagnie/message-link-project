@@ -27,13 +27,13 @@
   padding-right: 0.8rem;
 }
 
-.link a {
+.link .linkHref {
   text-decoration: none;
   color: whitesmoke;
   cursor: pointer;
 }
 
-.link a:hover {
+.link .linkHref:hover {
   text-decoration: underline;
 }
 

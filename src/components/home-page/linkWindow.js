@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 import { AiOutlineCopy } from "react-icons/ai";
 
 import styles from "./linkWindow.module.css";
 
-function LinkWindow() {
+function LinkWindow(props) {
   return (
     <section className={styles.linkWindowSection}>
       <div className={styles.linkWindowSumup}>
@@ -12,7 +14,7 @@ function LinkWindow() {
       <div className={styles.linkBox}>
         <div className={styles.link}>
           <span>Your link:</span>
-          <a href="www.google.pl">www.google.pl/token/12345</a>
+          <Link href={props.newLink} className={styles.linkHref}>{props.newLink}</Link>
         </div>
         <button><AiOutlineCopy /> Copy</button>
       </div>
