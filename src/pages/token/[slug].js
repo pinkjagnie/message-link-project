@@ -1,15 +1,17 @@
+import styles from "../../styles/singleToken.module.css";
+
 export default function Hash(props) {
  
   return(
-    <section>
-      <div>
+    <section className={styles.singleTokenSection}>
+      <div className={styles.singleMessageDescription}>
         <h1>Hi!</h1>
         <p>You are on this page because someone sent you a link to read a special message that is just for you. You can only read it once, then the message will disappear because the link can only be used once</p>
       </div>
-      <div>
+      <div className={styles.singleMessageBox}>
         <p>Message number: {props.message.hash}</p>
         <p>Here is your message:</p>
-        <p>{props.message.message}</p>
+        <p className={styles.singleMessage}>{props.message.message}</p>
       </div>
     </section>
   )
