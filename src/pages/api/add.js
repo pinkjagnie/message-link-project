@@ -13,7 +13,7 @@ async function handler(req, res) {
       return;
     }
 
-    const newMessage = { message, hash };
+    const newMessage = { message, hash, clicks: 0 };
 
     console.log(newMessage)
 
