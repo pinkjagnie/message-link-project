@@ -1,7 +1,7 @@
 import styles from "../../styles/singleToken.module.css";
 
 export default function Hash(props) {
- 
+
   return(
     <section className={styles.singleTokenSection}>
       <div className={styles.singleMessageDescription}>
@@ -29,10 +29,21 @@ export async function getServerSideProps(context) {
   });
 
   let messages = await res.json();
+
+  await fetch(`http://localhost:3000/api/token/${slug}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      clicks: 1
+    })
+  });
   
    return {
     props: {
       message: messages,
+      slug: slug,
     }
   };
 }
