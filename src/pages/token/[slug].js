@@ -1,6 +1,23 @@
+import { useEffect } from "react";
+
 import styles from "../../styles/singleToken.module.css";
 
 export default function Hash(props) {
+
+  useEffect(() => {
+    let url = `/api/token/${props.slug}`
+
+    fetch(url, {
+      method: "DELETE",
+      body: JSON.stringify({
+        message: props.message,
+        hash: props.slug
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, [props.message, props.slug])
 
   return(
     <section className={styles.singleTokenSection}>
