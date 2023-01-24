@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { generateHash } from "random-hash";
+import md5 from 'md5-hash';
 
 import LinkWindow from "./linkWindow";
 
@@ -13,7 +13,7 @@ function Form() {
   const messageHandler = (event) => {
     event.preventDefault();
 
-    const newHash = generateHash({ length: 8 });
+    const newHash = md5(messageRef.current.value);
 
     const enteredMessage = messageRef.current.value;
 
