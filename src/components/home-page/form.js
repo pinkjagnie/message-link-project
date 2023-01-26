@@ -7,15 +7,19 @@ import LinkWindow from "./linkWindow";
 import styles from "./form.module.css";
 
 function Form() {
-  const messageRef = useRef(null);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const quantityRef = useRef(null);
+  const noteRef = useRef(null);
+
   const [newLink, setNewLink] = useState("");
 
   const messageHandler = (event) => {
     event.preventDefault();
 
-    const newHash = md5(messageRef.current.value);
+    const newHash = md5(noteRef.current.value);
 
-    const enteredMessage = messageRef.current.value;
+    const enteredMessage = noteRef.current.value;
 
     console.log(enteredMessage)
     console.log(newHash)
@@ -35,17 +39,32 @@ function Form() {
 
     setNewLink(generatedLink);
 
-    messageRef.current.value = "";
+    noteRef.current.value = "";
   }
 
   return (
     <>
       <section className={styles.formSection}>
         <form className={styles.form} onSubmit={messageHandler}>
+
           <div className={styles.control}>
-            <label htmlFor="message">Your message</label>
-            <textarea id="message" rows="8" cols="50" required ref={messageRef} />
+            <label htmlFor="name">Your name</label>
+            <input type="text" id="name" required ref={nameRef}/>
           </div>
+          <div className={styles.control}>
+            <label htmlFor="email">Your email</label>
+            <input type="email" id="email" required ref={emailRef}/>
+          </div>
+          <div className={styles.control}>
+            <label htmlFor="quantity">Quantity</label>
+            <input type="number" id="quantity" required ref={quantityRef} />
+          </div>
+
+          <div className={styles.control}>
+            <label htmlFor="message">Notes</label>
+            <textarea id="message" rows="4" cols="50" required ref={noteRef} />
+          </div>
+
           <button>Submit</button>
         </form>
         <div className={styles.formSumup}>Below you will get a link.</div>
