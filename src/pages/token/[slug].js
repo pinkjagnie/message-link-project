@@ -10,14 +10,14 @@ export default function Hash(props) {
     fetch(url, {
       method: "DELETE",
       body: JSON.stringify({
-        message: props.message,
+        note: props.bills,
         hash: props.slug
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-  }, [props.message, props.slug])
+  }, [props.bills, props.slug])
 
   return(
     <section className={styles.singleTokenSection}>
@@ -26,9 +26,9 @@ export default function Hash(props) {
         <p>You are on this page because someone sent you a link to read a special message that is just for you. You can only read it once, then the message will disappear because the link can only be used once</p>
       </div>
       <div className={styles.singleMessageBox}>
-        <p>Message number: {props.message.hash}</p>
+        <p>Message number: {props.bills.hash}</p>
         <p>Here is your message:</p>
-        <p className={styles.singleMessage}>{props.message.message}</p>
+        <p className={styles.singleMessage}>{props.bills.note}</p>
       </div>
     </section>
   )
@@ -45,7 +45,7 @@ export async function getServerSideProps(context) {
     },
   });
 
-  let messages = await res.json();
+  let bills = await res.json();
 
   await fetch(`http://localhost:3000/api/token/${slug}`, {
     method: "PATCH",
@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
   
    return {
     props: {
-      message: messages,
+      bills: bills,
       slug: slug,
     }
   };

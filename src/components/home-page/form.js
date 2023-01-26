@@ -19,15 +19,21 @@ function Form() {
 
     const newHash = md5(noteRef.current.value);
 
-    const enteredMessage = noteRef.current.value;
+    const enteredName = nameRef.current.value;
+    const enteredEmail = emailRef.current.value;
+    const enteredQuantity = quantityRef.current.value;
+    const enteredNote = noteRef.current.value;
 
-    console.log(enteredMessage)
+    console.log(enteredName, enteredEmail, enteredQuantity, enteredNote)
     console.log(newHash)
 
     fetch("/api/add", {
       method: "POST",
       body: JSON.stringify({
-        message: enteredMessage,
+        name: enteredName,
+        email: enteredEmail,
+        quantity: enteredQuantity,
+        note: enteredNote,
         hash: newHash
       }),
       headers: {
@@ -39,6 +45,9 @@ function Form() {
 
     setNewLink(generatedLink);
 
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    quantityRef.current.value = "";
     noteRef.current.value = "";
   }
 

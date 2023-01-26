@@ -16,10 +16,10 @@ async function handler(req, res) {
 
   const db = client.db();
   
-  let msgResult;
+  let billResult;
 
   try {
-    msgResult = await db.collection("messages").findOne({ hash: slug});
+    billResult = await db.collection("bills").findOne({ hash: slug});
   } catch (error) {
     client.close();
     res.status(500).json({ message: "Finding failed" });
@@ -27,7 +27,7 @@ async function handler(req, res) {
   }
 
   client.close();
-  res.status(200).json(msgResult) 
+  res.status(200).json(billResult) 
 
   // PATCH - clicks set up to 1
 
@@ -46,7 +46,7 @@ async function handler(req, res) {
     const db = client.db();
 
     try {
-      await db.collection("messages").updateOne( 
+      await db.collection("bills").updateOne( 
         { hash : slug },
         { $set: { "clicks" : 1 } }
       );
@@ -66,7 +66,7 @@ async function handler(req, res) {
   // DELETE
 
   if (req.method === "DELETE") {
-    const { message, hash } = req.body;
+    const { note, hash } = req.body;
 
     let client;
 
@@ -80,7 +80,7 @@ async function handler(req, res) {
     const db = client.db();
 
     try {
-      await db.collection("messages").deleteOne({ "hash": hash })
+      await db.collection("bills").deleteOne({ "hash": hash })
     } catch (error) {
       client.close();
       res.status(500).json({ message: "Failed" });

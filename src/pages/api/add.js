@@ -6,16 +6,16 @@ async function handler(req, res) {
 
   if (req.method === "POST") {
 
-    const { message, hash } = req.body;
+    const { name, email, quantity, note, hash } = req.body;
 
-    if (!message || message.trim() === "" || !hash || hash.trim() === "") {
+    if (!note || note.trim() === "" || !hash || hash.trim() === "") {
       res.status(422).json({ message: "Invalid input" });
       return;
     }
 
-    const newMessage = { message, hash, clicks: 0 };
+    const newBill = { name, email, quantity, note, hash, clicks: 0 };
 
-    console.log(newMessage)
+    console.log(newBill)
 
     let client;
 
@@ -29,7 +29,7 @@ async function handler(req, res) {
     const db = client.db();
 
     try {
-      await db.collection("messages").insertOne(newMessage);
+      await db.collection("bills").insertOne(newBill);
     } catch (error) {
       client.close();
       res.status(500).json({ message: "Storing message failed" });
@@ -40,7 +40,7 @@ async function handler(req, res) {
 
     res
     .status(200)
-    .json({ message: "Successfully stored message", message: newMessage });
+    .json({ message: "Successfully stored message", message: newBill });
   }
 
 }
