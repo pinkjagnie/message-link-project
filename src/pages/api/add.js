@@ -8,7 +8,7 @@ async function handler(req, res) {
 
     const { name, email, quantity, note, hash } = req.body;
 
-    if (!note || note.trim() === "" || !hash || hash.trim() === "") {
+    if (!name || name.trim() === "" || !email || email.trim() === '' || !email.includes('@') || !quantity || quantity.trim() === "" || !note || note.trim() === "" || !hash || hash.trim() === "") {
       res.status(422).json({ message: "Invalid input" });
       return;
     }
