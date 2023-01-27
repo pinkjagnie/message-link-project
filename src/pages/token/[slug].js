@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import {StyleSheet} from "@react-pdf/renderer"
 // import { PDFViewer, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
@@ -8,6 +9,21 @@ import GeneratedPdf from "../../components/GeneratedPdf";
 // import styles from "../../styles/singleToken.module.css";
 
 export default function Hash(props) {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [note, setNote] = useState("");
+  const [pdf, setPdf] = useState(false);
+
+  const clickHandler = () => {
+    setName(props.bills.name);
+    setEmail(props.bills.email);
+    setQuantity(props.bills.quantity);
+    setNote(props.bills.note)
+
+    setPdf(true)
+  }
 
   // useEffect(() => {
   //   let url = `/api/token/${props.slug}`
@@ -26,7 +42,8 @@ export default function Hash(props) {
 
   return(
     <div style={styles.generatedPdfSection}>
-      <GeneratedPdf name={props.bills.name} email={props.bills.email} quantity={props.bills.quantity} note={props.bills.note}/>
+      <button onClick={clickHandler}>Generate pdf</button>
+      {pdf && <GeneratedPdf name={name} email={email} quantity={quantity} note={note}/>}
     </div>
   )
 }
